@@ -1,13 +1,13 @@
-# [REPOSITORY NAME]
+# STX.EFxceptions.PostgreSQL
 
-[ADD BUILD TILE]
+[ADD BUILD FILE]
 [![The Standard](https://img.shields.io/github/v/release/hassanhabib/The-Standard?filter=v2.10.2&style=default&label=Standard%20Version&color=2ea44f)](https://github.com/hassanhabib/The-Standard)
 [![The Standard - COMPLIANT](https://img.shields.io/badge/The_Standard-COMPLIANT-2ea44f)](https://github.com/hassanhabib/The-Standard)
 [![The Standard Community](https://img.shields.io/discord/934130100008538142?color=%237289da&label=The%20Standard%20Community&logo=Discord)](https://discord.gg/vdPZ7hS52X)
 
 ## Introduction
 
-[Add Introduction Here]
+A Standardized .NET library that captures the exceptions thrown by the EntityFramework from SQL Server and converts them into meaningful exceptions...
 
 ## Standard-Compliance
 This library was built according to The Standard. The library follows engineering principles, patterns and tooling as recommended by [The Standard](https://github.com/hassanhabib/The-Standard).
@@ -46,4 +46,4 @@ A special thanks to all the community members, and the following dedicated engin
 >
 >Mr. Christo du Toit
 >
->Mr. Gregory Hayes
+>Mr. Gregory Hays
