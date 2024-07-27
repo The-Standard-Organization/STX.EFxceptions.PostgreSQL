@@ -28,4 +28,20 @@
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
+  <ItemGroup>
+	<None Include="..\README.md">
+	  <Pack>true</Pack>
+	  <PackagePath></PackagePath>
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</None>
+	<None Include="..\License.txt">
+	  <Pack>True</Pack>
+	  <PackagePath></PackagePath>
+	</None>
+	<!--<None Include="..\Resources\EFxceptions.png">
+	  <Pack>True</Pack>
+	  <PackagePath></PackagePath>
+	</None>-->
+  </ItemGroup>
+
 </Project>
