@@ -11,7 +11,7 @@
 	<Company>The Standard Community</Company>
 	<Description>A Standardized .NET library for PostgreSQL that captures the exceptions thrown by EntityFramework and converts them into meaningful exceptions...</Description>
 	<Copyright>The Standard Community 2024 (c)</Copyright>
-	<!--<PackageIcon>EFxceptions.png</PackageIcon>-->
+	<PackageIcon>EFxceptions.png</PackageIcon>
 	<PackageProjectUrl>https://github.com/rcruzfreelance/STX.EFxceptions.PostgreSQL</PackageProjectUrl>
 	<RepositoryUrl>https://github.com/rcruzfreelance/STX.EFxceptions.PostgreSQL</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
@@ -24,7 +24,7 @@
 	<AssemblyVersion>0.0.1</AssemblyVersion>
 	<FileVersion>0.0.1</FileVersion>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
-	<PackageLicenseFile>License.txt</PackageLicenseFile>
+	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
@@ -34,14 +34,18 @@
 	  <PackagePath></PackagePath>
 	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</None>
-	<None Include="..\License.txt">
+	<None Include="..\LICENSE.txt">
 	  <Pack>True</Pack>
 	  <PackagePath></PackagePath>
 	</None>
-	<!--<None Include="..\Resources\EFxceptions.png">
+	<None Include="..\Resources\Images\EFxceptions.png">
 	  <Pack>True</Pack>
 	  <PackagePath></PackagePath>
-	</None>-->
+	</None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\STX.EFxceptions.PostgreSQL.Base\STX.EFxceptions.PostgreSQL.Base.csproj" />
   </ItemGroup>
 
 </Project>
