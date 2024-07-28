@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STX.EFxceptions.PostgreSQL.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STX.EFxceptions.Identity.PostgreSQL", "STX.EFxceptions.Identity.PostgreSQL\STX.EFxceptions.Identity.PostgreSQL.csproj", "{103341DD-2B2F-4A1C-84AF-137837569FE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.PostgreSQL.Base.Tests.Unit", "STX.EFxceptions.PostgreSQL.Base.Tests.Unit\STX.EFxceptions.PostgreSQL.Base.Tests.Unit.csproj", "{5919291F-BE69-44AB-A0CF-9F555656CDF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STX.EFxceptions.PostgreSQL.Base.Tests.Unit", "STX.EFxceptions.PostgreSQL.Base.Tests.Unit\STX.EFxceptions.PostgreSQL.Base.Tests.Unit.csproj", "{5919291F-BE69-44AB-A0CF-9F555656CDF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.PostgreSQL.Tests.Acceptance", "STX.EFxceptions.PostgreSQL.Tests.Acceptance\STX.EFxceptions.PostgreSQL.Tests.Acceptance.csproj", "{E8F4E849-EC1B-49B4-BE19-8C7A7C36C25A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.Identity.PostgreSQL.Tests.Acceptance", "STX.EFxceptions.Identity.PostgreSQL.Tests.Acceptance\STX.EFxceptions.Identity.PostgreSQL.Tests.Acceptance.csproj", "{2A18E4E6-ED2F-4579-B85A-4282DA9EDDD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{E8F4E849-EC1B-49B4-BE19-8C7A7C36C25A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8F4E849-EC1B-49B4-BE19-8C7A7C36C25A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8F4E849-EC1B-49B4-BE19-8C7A7C36C25A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A18E4E6-ED2F-4579-B85A-4282DA9EDDD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A18E4E6-ED2F-4579-B85A-4282DA9EDDD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A18E4E6-ED2F-4579-B85A-4282DA9EDDD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A18E4E6-ED2F-4579-B85A-4282DA9EDDD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
