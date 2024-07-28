@@ -38,7 +38,7 @@
 	  <Pack>True</Pack>
 	  <PackagePath></PackagePath>
 	</None>
-	<None Include="..\Resources\Images\EFxceptions.png">
+	<None Include="..\Resources\EFxceptions.png">
 	  <Pack>True</Pack>
 	  <PackagePath></PackagePath>
 	</None>
