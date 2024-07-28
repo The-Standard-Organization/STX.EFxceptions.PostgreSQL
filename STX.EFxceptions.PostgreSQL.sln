@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.PostgreSQL", "STX.EFxceptions.PostgreSQL\STX.EFxceptions.PostgreSQL.csproj", "{26180647-8941-4BDB-8B14-C9F9C50B8F32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STX.EFxceptions.PostgreSQL", "STX.EFxceptions.PostgreSQL\STX.EFxceptions.PostgreSQL.csproj", "{26180647-8941-4BDB-8B14-C9F9C50B8F32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.PostgreSQL.Base", "STX.EFxceptions.PostgreSQL.Base\STX.EFxceptions.PostgreSQL.Base.csproj", "{49BA334B-1DE9-434E-894D-3D6719B6CA6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{26180647-8941-4BDB-8B14-C9F9C50B8F32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26180647-8941-4BDB-8B14-C9F9C50B8F32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26180647-8941-4BDB-8B14-C9F9C50B8F32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49BA334B-1DE9-434E-894D-3D6719B6CA6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49BA334B-1DE9-434E-894D-3D6719B6CA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49BA334B-1DE9-434E-894D-3D6719B6CA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49BA334B-1DE9-434E-894D-3D6719B6CA6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
