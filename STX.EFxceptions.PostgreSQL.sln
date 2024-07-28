@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.PostgreSQL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.Identity.PostgreSQL.Tests.Acceptance", "STX.EFxceptions.Identity.PostgreSQL.Tests.Acceptance\STX.EFxceptions.Identity.PostgreSQL.Tests.Acceptance.csproj", "{2A18E4E6-ED2F-4579-B85A-4282DA9EDDD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.PostgreSQL.Tests.Acceptance", "STX.EFxceptions.PostgreSQL.Tests.Acceptance\STX.EFxceptions.PostgreSQL.Tests.Acceptance.csproj", "{E8F4E849-EC1B-49B4-BE19-8C7A7C36C25A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.PostgreSQL.Infrastructure.Build", "STX.EFxceptions.PostgreSQL.Infrastructure.Build\STX.EFxceptions.PostgreSQL.Infrastructure.Build.csproj", "{068E4391-352C-42B9-8DB6-A928C2B612FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +47,10 @@ Global
 		{2A18E4E6-ED2F-4579-B85A-4282DA9EDDD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A18E4E6-ED2F-4579-B85A-4282DA9EDDD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A18E4E6-ED2F-4579-B85A-4282DA9EDDD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{068E4391-352C-42B9-8DB6-A928C2B612FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{068E4391-352C-42B9-8DB6-A928C2B612FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{068E4391-352C-42B9-8DB6-A928C2B612FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{068E4391-352C-42B9-8DB6-A928C2B612FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
