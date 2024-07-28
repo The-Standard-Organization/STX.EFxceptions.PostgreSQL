@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.PostgreSQL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.Identity.PostgreSQL.Tests.Acceptance", "STX.EFxceptions.Identity.PostgreSQL.Tests.Acceptance\STX.EFxceptions.Identity.PostgreSQL.Tests.Acceptance.csproj", "{2A18E4E6-ED2F-4579-B85A-4282DA9EDDD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STX.EFxceptions.PostgreSQL.Tests.Acceptance", "STX.EFxceptions.PostgreSQL.Tests.Acceptance\STX.EFxceptions.PostgreSQL.Tests.Acceptance.csproj", "{E8F4E849-EC1B-49B4-BE19-8C7A7C36C25A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
