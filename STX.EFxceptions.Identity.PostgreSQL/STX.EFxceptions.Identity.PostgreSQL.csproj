@@ -44,4 +44,8 @@
 	</None>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\STX.EFxceptions.PostgreSQL.Base\STX.EFxceptions.PostgreSQL.Base.csproj" />
+  </ItemGroup>
+
 </Project>
