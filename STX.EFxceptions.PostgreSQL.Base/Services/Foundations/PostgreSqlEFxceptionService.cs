@@ -22,7 +22,7 @@ namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
             ValidateInnerException(dbUpdateException);
 
             NpgsqlException postgreSqlException = GetPostgreSqlException(dbUpdateException.InnerException);
-            int sqlErrorCode = this.postgreSqlErrorBroker.GetErrorCode(postgreSqlException);
+            int postgreSqlErrorCode = this.postgreSqlErrorBroker.GetErrorCode(postgreSqlException);
             throw dbUpdateException;
         });
 
