@@ -23,6 +23,9 @@ namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
 
             NpgsqlException postgreSqlException = GetPostgreSqlException(dbUpdateException.InnerException);
             int postgreSqlErrorCode = this.postgreSqlErrorBroker.GetErrorCode(postgreSqlException);
+
+            ConvertAndThrowMeaningfulException(postgreSqlErrorCode, postgreSqlException.Message);
+
             throw dbUpdateException;
         });
 

@@ -63,7 +63,7 @@ namespace STX.EFxceptions.PostgreSQL.Base.Tests.Unit.Services.Foundations
         public void ShouldThrowInvalidColumnNamePostgreSqlException()
         {
             // given
-            int postgreSqlInvalidColumnNameErrorCode = 207;
+            int postgreSqlInvalidColumnNameErrorCode = 42703;
             string randomErrorMessage = CreateRandomErrorMessage();
 
             NpgsqlException invalidColumnNameExceptionThrown =

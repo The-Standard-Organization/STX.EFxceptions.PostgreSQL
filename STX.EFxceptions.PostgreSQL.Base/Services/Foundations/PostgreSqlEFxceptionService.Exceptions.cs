@@ -24,6 +24,21 @@ namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
                     message: foreignKeyConstraintConflictPostgreSqlException.Message,
                     innerException: foreignKeyConstraintConflictPostgreSqlException);
             }
+            catch (InvalidColumnNamePostgreSqlException invalidColumnNamePostgreSqlException)
+            {
+                throw new InvalidColumnNameException(
+                    message: invalidColumnNamePostgreSqlException.Message,
+                    innerException: invalidColumnNamePostgreSqlException);
+            }
+        }
+
+        private void ConvertAndThrowMeaningfulException(int sqlErrorCode, string message)
+        {
+            switch (sqlErrorCode)
+            {
+                case 42703:
+                    throw new InvalidColumnNamePostgreSqlException(message);
+            }
         }
     }
 }
