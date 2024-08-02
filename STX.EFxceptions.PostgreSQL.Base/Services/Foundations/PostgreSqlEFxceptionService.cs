@@ -2,6 +2,7 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
+using System;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using STX.EFxceptions.Abstractions.Brokers.DbErrorBroker;
@@ -15,9 +16,18 @@ namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
         public PostgreSqlEFxceptionService(IDbErrorBroker<NpgsqlException> postgreSqlErrorBroker) =>
             this.postgreSqlErrorBroker = postgreSqlErrorBroker;
 
-        public void ThrowMeaningfulException(DbUpdateException dbUpdateException)
+        public void ThrowMeaningfulException(DbUpdateException dbUpdateException) =>
+        TryCatch(() =>
         {
             ValidateInnerException(dbUpdateException);
-        }
+
+            NpgsqlException postgreSqlException = GetPostgreSqlException(dbUpdateException.InnerException);
+            int sqlErrorCode = this.postgreSqlErrorBroker.GetErrorCode(postgreSqlException);
+            throw dbUpdateException;
+        });
+
+        private NpgsqlException GetPostgreSqlException(Exception exception) =>
+             (NpgsqlException)exception;
+
     }
 }

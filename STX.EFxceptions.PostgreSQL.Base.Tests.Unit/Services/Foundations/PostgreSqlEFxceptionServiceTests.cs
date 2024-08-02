@@ -3,6 +3,7 @@
 // ----------------------------------------------------------------------------------
 
 using System.Reflection;
+using System.Runtime.Serialization;
 using Moq;
 using Npgsql;
 using STX.EFxceptions.PostgreSQL.Base.Brokers.DbErrorBroker;
@@ -28,13 +29,24 @@ namespace STX.EFxceptions.PostgreSQL.Base.Tests.Unit.Services.Foundations
 
         private NpgsqlException CreatePostgreSqlException(string message, int errorCode)
         {
-            ConstructorInfo constructorInfo = typeof(NpgsqlException)
-                .GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null,
-                    new[] { typeof(string), typeof(int) }, null);
+            NpgsqlException postgreSqlException =
+                (NpgsqlException)FormatterServices.GetUninitializedObject(typeof(NpgsqlException));
 
-            var exception = (NpgsqlException)constructorInfo.Invoke(new object[] { message, errorCode });
+            FieldInfo messageField = typeof(NpgsqlException).GetField(
+                name: "_message",
+                bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
 
-            return exception;
+            if (messageField != null)
+                messageField.SetValue(postgreSqlException, message);
+
+            FieldInfo errorCodeField = typeof(NpgsqlException).GetField(
+                name: "_errorCode",
+                bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic);
+
+            if (errorCodeField != null)
+                errorCodeField.SetValue(postgreSqlException, errorCode);
+
+            return postgreSqlException;
         }
     }
 }
