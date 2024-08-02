@@ -8,7 +8,7 @@ using STX.EFxceptions.Abstractions.Brokers.DbErrorBroker;
 
 namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
 {
-    public class PostgreSqlEFxceptionService : IPostgreSqlEFxceptionService
+    public partial class PostgreSqlEFxceptionService : IPostgreSqlEFxceptionService
     {
         private readonly IDbErrorBroker<NpgsqlException> postgreSqlErrorBroker;
 
@@ -17,7 +17,7 @@ namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
 
         public void ThrowMeaningfulException(DbUpdateException dbUpdateException)
         {
-
+            ValidateInnerException(dbUpdateException);
         }
     }
 }
