@@ -118,13 +118,13 @@ namespace STX.EFxceptions.PostgreSQL.Base.Tests.Unit.Services.Foundations
         public void ShouldThrowInvalidObjectNamePostgreSqlException()
         {
             // given
-            string sqlInvalidObjectNameErrorCode = "42P01";
+            string postgreSqlInvalidObjectNameErrorCode = "42P01";
             string randomErrorMessage = CreateRandomErrorMessage();
 
             NpgsqlException invalidObjectNameExceptionThrown =
                 CreatePostgreSqlException(
                     message: randomErrorMessage,
-                    errorCode: sqlInvalidObjectNameErrorCode);
+                    errorCode: postgreSqlInvalidObjectNameErrorCode);
 
             string randomDbUpdateExceptionMessage = CreateRandomErrorMessage();
 
@@ -143,7 +143,7 @@ namespace STX.EFxceptions.PostgreSQL.Base.Tests.Unit.Services.Foundations
 
             this.postgreSqlErrorBrokerMock.Setup(broker =>
                 broker.GetErrorCode(invalidObjectNameExceptionThrown))
-                    .Returns(sqlInvalidObjectNameErrorCode);
+                    .Returns(postgreSqlInvalidObjectNameErrorCode);
 
             // when
             InvalidObjectNameException actualInvalidObjectNameException =
@@ -170,5 +170,60 @@ namespace STX.EFxceptions.PostgreSQL.Base.Tests.Unit.Services.Foundations
             this.postgreSqlErrorBrokerMock.VerifyNoOtherCalls();
         }
 
+        [Fact]
+        public void ShouldThrowForeignKeyConstraintConflictPostgreSqlException()
+        {
+            // given
+            string postgreSqlForeignKeyConstraintConflictErrorCode = "23503";
+            string randomErrorMessage = CreateRandomErrorMessage();
+
+            NpgsqlException foreignKeyConstraintConflictExceptionThrown =
+                CreatePostgreSqlException(
+                    message: randomErrorMessage,
+                    errorCode: postgreSqlForeignKeyConstraintConflictErrorCode);
+
+            string randomDbUpdateExceptionMessage = CreateRandomErrorMessage();
+
+            var dbUpdateException = new DbUpdateException(
+                message: randomDbUpdateExceptionMessage,
+                innerException: foreignKeyConstraintConflictExceptionThrown);
+
+            var foreignKeyConstraintConflictSqlException =
+                new ForeignKeyConstraintConflictPostgreSqlException(
+                    message: foreignKeyConstraintConflictExceptionThrown.Message);
+
+            var expectedForeignKeyConstraintConflictException =
+                new ForeignKeyConstraintConflictException(
+                    message: foreignKeyConstraintConflictSqlException.Message,
+                    innerException: foreignKeyConstraintConflictSqlException);
+
+            this.postgreSqlErrorBrokerMock.Setup(broker =>
+                broker.GetErrorCode(foreignKeyConstraintConflictExceptionThrown))
+                    .Returns(postgreSqlForeignKeyConstraintConflictErrorCode);
+
+            // when
+            ForeignKeyConstraintConflictException actualForeignKeyConstraintConflictException =
+                Assert.Throws<ForeignKeyConstraintConflictException>(() =>
+                    this.postgreSqlEFxceptionService
+                        .ThrowMeaningfulException(dbUpdateException));
+
+            // then
+            actualForeignKeyConstraintConflictException.Should()
+                .BeEquivalentTo(
+                expectation: expectedForeignKeyConstraintConflictException,
+                config: options => options
+                    .Excluding(ex => ex.TargetSite)
+                    .Excluding(ex => ex.StackTrace)
+                    .Excluding(ex => ex.Source)
+                    .Excluding(ex => ex.InnerException.TargetSite)
+                    .Excluding(ex => ex.InnerException.StackTrace)
+                    .Excluding(ex => ex.InnerException.Source));
+
+            this.postgreSqlErrorBrokerMock.Verify(broker => broker
+                .GetErrorCode(foreignKeyConstraintConflictExceptionThrown),
+                    Times.Once());
+
+            this.postgreSqlErrorBrokerMock.VerifyNoOtherCalls();
+        }
     }
 }
