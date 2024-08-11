@@ -29,6 +29,12 @@ namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
                     message: invalidColumnNamePostgreSqlException.Message,
                     innerException: invalidColumnNamePostgreSqlException);
             }
+            catch (InvalidObjectNamePostgreSqlException invalidObjectNamePostgreSqlException)
+            {
+                throw new InvalidObjectNameException(
+                    message: invalidObjectNamePostgreSqlException.Message,
+                    innerException: invalidObjectNamePostgreSqlException);
+            }
         }
 
         private void ConvertAndThrowMeaningfulException(string sqlErrorCode, string message)
@@ -37,6 +43,9 @@ namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
             {
                 case "42703":
                     throw new InvalidColumnNamePostgreSqlException(message);
+
+                case "42P01":
+                    throw new InvalidObjectNamePostgreSqlException(message);
             }
         }
     }
