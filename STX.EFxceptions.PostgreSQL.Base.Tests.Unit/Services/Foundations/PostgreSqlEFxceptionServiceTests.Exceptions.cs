@@ -225,5 +225,61 @@ namespace STX.EFxceptions.PostgreSQL.Base.Tests.Unit.Services.Foundations
 
             this.postgreSqlErrorBrokerMock.VerifyNoOtherCalls();
         }
+
+        [Fact]
+        public void ShouldThrowDuplicateKeyWithUniqueIndexPostgreSqlException()
+        {
+            // given
+            string postgreSqlDuplicateKeyWithUniqueIndexErrorCode = "42710";
+            string randomErrorMessage = CreateRandomErrorMessage();
+
+            NpgsqlException duplicateKeyWithUniqueIndexExceptionThrown =
+                CreatePostgreSqlException(
+                    message: randomErrorMessage,
+                    errorCode: postgreSqlDuplicateKeyWithUniqueIndexErrorCode);
+
+            string randomDbUpdateExceptionMessage = CreateRandomErrorMessage();
+
+            var dbUpdateException = new DbUpdateException(
+                message: randomDbUpdateExceptionMessage,
+                innerException: duplicateKeyWithUniqueIndexExceptionThrown);
+
+            var duplicateKeyWithUniqueIndexSqlException =
+                new DuplicateKeyWithUniqueIndexPostgreSqlException(
+                    message: duplicateKeyWithUniqueIndexExceptionThrown.Message);
+
+            var expectedDuplicateKeyWithUniqueIndexException =
+                new DuplicateKeyWithUniqueIndexException(
+                    message: duplicateKeyWithUniqueIndexSqlException.Message,
+                    innerException: duplicateKeyWithUniqueIndexSqlException);
+
+            this.postgreSqlErrorBrokerMock.Setup(broker =>
+                broker.GetErrorCode(duplicateKeyWithUniqueIndexExceptionThrown))
+                    .Returns(postgreSqlDuplicateKeyWithUniqueIndexErrorCode);
+
+            // when
+            DuplicateKeyWithUniqueIndexException actualDuplicateKeyWithUniqueIndexException =
+                Assert.Throws<DuplicateKeyWithUniqueIndexException>(() =>
+                    this.postgreSqlEFxceptionService
+                        .ThrowMeaningfulException(dbUpdateException));
+
+            // then
+            actualDuplicateKeyWithUniqueIndexException.Should()
+                .BeEquivalentTo(
+                expectation: expectedDuplicateKeyWithUniqueIndexException,
+                config: options => options
+                    .Excluding(ex => ex.TargetSite)
+                    .Excluding(ex => ex.StackTrace)
+                    .Excluding(ex => ex.Source)
+                    .Excluding(ex => ex.InnerException.TargetSite)
+                    .Excluding(ex => ex.InnerException.StackTrace)
+                    .Excluding(ex => ex.InnerException.Source));
+
+            this.postgreSqlErrorBrokerMock.Verify(broker => broker
+                .GetErrorCode(duplicateKeyWithUniqueIndexExceptionThrown),
+                    Times.Once());
+
+            this.postgreSqlErrorBrokerMock.VerifyNoOtherCalls();
+        }
     }
 }
