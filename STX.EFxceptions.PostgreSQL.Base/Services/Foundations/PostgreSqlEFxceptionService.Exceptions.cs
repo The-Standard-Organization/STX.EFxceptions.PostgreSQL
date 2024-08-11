@@ -46,6 +46,9 @@ namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
 
                 case "42P01":
                     throw new InvalidObjectNamePostgreSqlException(message);
+
+                case "23503":
+                    throw new ForeignKeyConstraintConflictPostgreSqlException(message);
             }
         }
     }
