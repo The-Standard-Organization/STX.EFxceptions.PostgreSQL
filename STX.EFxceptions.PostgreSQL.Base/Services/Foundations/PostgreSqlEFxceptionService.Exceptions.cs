@@ -2,7 +2,6 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-using Microsoft.EntityFrameworkCore;
 using STX.EFxceptions.Abstractions.Models.Exceptions;
 using STX.EFxceptions.PostgreSQL.Base.Models.Exceptions;
 
@@ -32,11 +31,11 @@ namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
             }
         }
 
-        private void ConvertAndThrowMeaningfulException(int sqlErrorCode, string message)
+        private void ConvertAndThrowMeaningfulException(string sqlErrorCode, string message)
         {
             switch (sqlErrorCode)
             {
-                case 42703:
+                case "42703":
                     throw new InvalidColumnNamePostgreSqlException(message);
             }
         }

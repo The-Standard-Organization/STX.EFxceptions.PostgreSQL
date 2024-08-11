@@ -27,7 +27,7 @@ namespace STX.EFxceptions.PostgreSQL.Base.Tests.Unit.Services.Foundations
 
         private string CreateRandomErrorMessage() => new MnemonicString().GetValue();
 
-        private NpgsqlException CreatePostgreSqlException(string message, int errorCode)
+        private NpgsqlException CreatePostgreSqlException(string message, string errorCode)
         {
             NpgsqlException postgreSqlException =
                 (NpgsqlException)FormatterServices.GetUninitializedObject(typeof(NpgsqlException));

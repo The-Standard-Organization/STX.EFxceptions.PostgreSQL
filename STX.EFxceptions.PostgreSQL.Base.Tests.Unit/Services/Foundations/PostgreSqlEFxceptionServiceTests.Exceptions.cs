@@ -2,7 +2,6 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-using System;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Moq;
@@ -18,7 +17,7 @@ namespace STX.EFxceptions.PostgreSQL.Base.Tests.Unit.Services.Foundations
         public void ShouldThrowDbUpdateExceptionIfErrorCodeIsNotRecognized()
         {
             // given
-            int sqlForeignKeyConstraintConflictErrorCode = 0000;
+            string sqlForeignKeyConstraintConflictErrorCode = "0000";
             string randomErrorMessage = CreateRandomErrorMessage();
 
             NpgsqlException foreignKeyConstraintConflictExceptionThrown =
@@ -63,7 +62,7 @@ namespace STX.EFxceptions.PostgreSQL.Base.Tests.Unit.Services.Foundations
         public void ShouldThrowInvalidColumnNamePostgreSqlException()
         {
             // given
-            int postgreSqlInvalidColumnNameErrorCode = 42703;
+            string postgreSqlInvalidColumnNameErrorCode = "42703";
             string randomErrorMessage = CreateRandomErrorMessage();
 
             NpgsqlException invalidColumnNameExceptionThrown =
@@ -114,5 +113,62 @@ namespace STX.EFxceptions.PostgreSQL.Base.Tests.Unit.Services.Foundations
 
             this.postgreSqlErrorBrokerMock.VerifyNoOtherCalls();
         }
+
+        [Fact]
+        public void ShouldThrowInvalidObjectNamePostgreSqlException()
+        {
+            // given
+            string sqlInvalidObjectNameErrorCode = "42P01";
+            string randomErrorMessage = CreateRandomErrorMessage();
+
+            NpgsqlException invalidObjectNameExceptionThrown =
+                CreatePostgreSqlException(
+                    message: randomErrorMessage,
+                    errorCode: sqlInvalidObjectNameErrorCode);
+
+            string randomDbUpdateExceptionMessage = CreateRandomErrorMessage();
+
+            var dbUpdateException = new DbUpdateException(
+                message: randomDbUpdateExceptionMessage,
+                innerException: invalidObjectNameExceptionThrown);
+
+            var invalidObjectNameSqlException =
+                new InvalidObjectNamePostgreSqlException(
+                    message: invalidObjectNameExceptionThrown.Message);
+
+            var expectedInvalidObjectNameException =
+                new InvalidObjectNameException(
+                    message: invalidObjectNameSqlException.Message,
+                    innerException: invalidObjectNameSqlException);
+
+            this.postgreSqlErrorBrokerMock.Setup(broker =>
+                broker.GetErrorCode(invalidObjectNameExceptionThrown))
+                    .Returns(sqlInvalidObjectNameErrorCode);
+
+            // when
+            InvalidObjectNameException actualInvalidObjectNameException =
+                Assert.Throws<InvalidObjectNameException>(() =>
+                    this.postgreSqlEFxceptionService
+                        .ThrowMeaningfulException(dbUpdateException));
+
+            // then
+            actualInvalidObjectNameException.Should()
+                .BeEquivalentTo(
+                expectation: expectedInvalidObjectNameException,
+                config: options => options
+                    .Excluding(ex => ex.TargetSite)
+                    .Excluding(ex => ex.StackTrace)
+                    .Excluding(ex => ex.Source)
+                    .Excluding(ex => ex.InnerException.TargetSite)
+                    .Excluding(ex => ex.InnerException.StackTrace)
+                    .Excluding(ex => ex.InnerException.Source));
+
+            this.postgreSqlErrorBrokerMock.Verify(broker => broker
+                .GetErrorCode(invalidObjectNameExceptionThrown),
+                    Times.Once());
+
+            this.postgreSqlErrorBrokerMock.VerifyNoOtherCalls();
+        }
+
     }
 }

@@ -11,9 +11,9 @@ namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
 {
     public partial class PostgreSqlEFxceptionService : IPostgreSqlEFxceptionService
     {
-        private readonly IDbErrorBroker<NpgsqlException> postgreSqlErrorBroker;
+        private readonly IDbErrorBroker<NpgsqlException, string> postgreSqlErrorBroker;
 
-        public PostgreSqlEFxceptionService(IDbErrorBroker<NpgsqlException> postgreSqlErrorBroker) =>
+        public PostgreSqlEFxceptionService(IDbErrorBroker<NpgsqlException, string> postgreSqlErrorBroker) =>
             this.postgreSqlErrorBroker = postgreSqlErrorBroker;
 
         public void ThrowMeaningfulException(DbUpdateException dbUpdateException) =>
@@ -22,7 +22,7 @@ namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
             ValidateInnerException(dbUpdateException);
 
             NpgsqlException postgreSqlException = GetPostgreSqlException(dbUpdateException.InnerException);
-            int postgreSqlErrorCode = this.postgreSqlErrorBroker.GetErrorCode(postgreSqlException);
+            string postgreSqlErrorCode = this.postgreSqlErrorBroker.GetErrorCode(postgreSqlException);
 
             ConvertAndThrowMeaningfulException(postgreSqlErrorCode, postgreSqlException.Message);
 

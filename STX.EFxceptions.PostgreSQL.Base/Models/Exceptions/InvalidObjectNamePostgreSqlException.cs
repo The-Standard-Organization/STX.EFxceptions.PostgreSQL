@@ -2,13 +2,12 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-using Npgsql;
+using Microsoft.EntityFrameworkCore;
 
-namespace STX.EFxceptions.PostgreSQL.Base.Brokers.DbErrorBroker
+namespace STX.EFxceptions.PostgreSQL.Base.Models.Exceptions
 {
-    public class PostgreSqlErrorBroker : IPostgreSqlErrorBroker
+    public class InvalidObjectNamePostgreSqlException : DbUpdateException
     {
-        public string GetErrorCode(NpgsqlException postgreSqlException) =>
-             postgreSqlException.ErrorCode.ToString();
+        public InvalidObjectNamePostgreSqlException(string message) : base(message) { }
     }
 }
