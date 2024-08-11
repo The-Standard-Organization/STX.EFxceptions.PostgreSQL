@@ -35,6 +35,12 @@ namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
                     message: invalidObjectNamePostgreSqlException.Message,
                     innerException: invalidObjectNamePostgreSqlException);
             }
+            catch (DuplicateKeyWithUniqueIndexPostgreSqlException duplicateKeyWithUniqueIndexPostgreSqlException)
+            {
+                throw new DuplicateKeyWithUniqueIndexException(
+                    message: duplicateKeyWithUniqueIndexPostgreSqlException.Message,
+                    innerException: duplicateKeyWithUniqueIndexPostgreSqlException);
+            }
         }
 
         private void ConvertAndThrowMeaningfulException(string sqlErrorCode, string message)
@@ -49,6 +55,9 @@ namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
 
                 case "23503":
                     throw new ForeignKeyConstraintConflictPostgreSqlException(message);
+
+                case "42710":
+                    throw new DuplicateKeyWithUniqueIndexPostgreSqlException(message);
             }
         }
     }
