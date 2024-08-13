@@ -2,13 +2,11 @@
 // Copyright (c) The Standard Organization: A coalition of the Good-Hearted Engineers
 // ----------------------------------------------------------------------------------
 
-using Npgsql;
+using STX.EFxceptions.Abstractions.Services.EFxceptions;
 
-namespace STX.EFxceptions.PostgreSQL.Base.Brokers.DbErrorBroker
+namespace STX.EFxceptions.PostgreSQL.Base.Services.Foundations
 {
-    public class PostgreSqlErrorBroker : IPostgreSqlErrorBroker
+    public interface IPostgreSqlEFxceptionService : IEFxceptionService
     {
-        public string GetErrorCode(NpgsqlException postgreSqlException) =>
-             postgreSqlException.SqlState;
     }
 }

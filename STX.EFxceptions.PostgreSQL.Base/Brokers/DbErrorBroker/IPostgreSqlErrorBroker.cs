@@ -7,6 +7,6 @@ using STX.EFxceptions.Abstractions.Brokers.DbErrorBroker;
 
 namespace STX.EFxceptions.PostgreSQL.Base.Brokers.DbErrorBroker
 {
-    public interface IPostgreSqlErrorBroker : IDbErrorBroker<NpgsqlException>
+    public interface IPostgreSqlErrorBroker : IDbErrorBroker<NpgsqlException, string>
     { }
 }
